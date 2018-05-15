@@ -1,0 +1,57 @@
+<form>
+  <h2>Corporate Employees</h2>
+  <div class="row">
+    <div class="m-r-half pull-right">
+      <button mat-raised-button color="primary">Add Employee</button>
+    </div>
+  </div>
+  <div class="row">
+    <mat-table [dataSource]="dataSource" matSort>
+
+      <!-- ID Column -->
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.name}} </mat-cell>
+      </ng-container>
+
+      <!-- Progress Column -->
+      <ng-container matColumnDef="jobTitle">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Job Title </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.jobTitle}} </mat-cell>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="tenure">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Tenure </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.tenure}} </mat-cell>
+      </ng-container>
+
+      <!-- Color Column -->
+      <ng-container matColumnDef="gender">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Gender </mat-header-cell>
+        <mat-cell *matCellDef="let row" > {{row.gender}} </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;">
+      </mat-row>
+    </mat-table>
+
+    <mat-paginator  [length]="employeesList?.length" [pageSizeOptions]="[5]">
+    </mat-paginator>
+
+  </div>
+
+  <!-- Employees by Job Title -->
+  <fieldset class="col-md-6">
+    <legend>Employees by Job Title</legend>
+    <div [chart]="chart" ></div>
+  </fieldset>
+  <!-- Employees by Gender -->
+  <fieldset class="col-md-6">
+    <legend>Employees by Gender</legend>
+    <div [chart]="genderChart" ></div>
+  </fieldset>
+
+
+</form>
